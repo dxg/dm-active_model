@@ -8,7 +8,7 @@ SOURCE         = ENV.fetch('SOURCE', :git).to_sym
 REPO_POSTFIX   = SOURCE == :path ? ''                                : '.git'
 DATAMAPPER     = SOURCE == :path ? Pathname(__FILE__).dirname.parent : 'http://github.com/datamapper'
 DM_VERSION     = '~> 1.3.0.beta'
-RAILS_VERSION  = [ '>= 3.0', '< 6.0' ]
+RAILS_VERSION  = [ '>= 6.0', '< 7.0' ]
 CURRENT_BRANCH = ENV.fetch('GIT_BRANCH', 'master')
 
 gem 'dm-core',     DM_VERSION, SOURCE => "#{DATAMAPPER}/dm-core#{REPO_POSTFIX}", :branch => CURRENT_BRANCH
@@ -17,20 +17,10 @@ gem 'activemodel', RAILS_VERSION, :require => nil
 group :development do
   gem 'dm-validations', DM_VERSION, SOURCE => "#{DATAMAPPER}/dm-validations#{REPO_POSTFIX}", :branch => CURRENT_BRANCH
 
-  gem 'jeweler',        '~> 1.6.4'
+  gem 'jeweler',        '~> 2.3.9'
   gem 'rake',           '~> 0.9.2'
   gem 'rspec',          '~> 1.3.2'
   gem 'test-unit',      '= 1.2.3'
-end
-
-platforms :mri_18 do
-  group :quality do
-
-    gem 'rcov',      '~> 0.9.10'
-    gem 'yard',      '~> 0.7.2'
-    gem 'yardstick', '~> 0.4'
-
-  end
 end
 
 group :datamapper do
